@@ -7,28 +7,44 @@ import java.io.IOException;
 public class LeerFichero {
 	
 	
+	public static void main(String[] args) {
+		String fichero = "/Users/mananas/ContactoDaoMem.java";
+		
+		System.out.println(muestraFichero(fichero));
+	}
+	
+	
+
 	
 	public static String muestraFichero(String fichero) {
 		
 		StringBuilder sb = new StringBuilder();
 		
+		BufferedReader br = null;
+		
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(fichero));
+			br = new BufferedReader(new FileReader(fichero));
 			String linea;
 			
 			while ((linea = br.readLine()) != null) {
-				
+				sb.append(linea + "\n");
 			}
-			
 			
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			if(br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
 		}
 		
-		
-		
-		
-		return null;
+		return sb.toString();
 	}
 
 }
