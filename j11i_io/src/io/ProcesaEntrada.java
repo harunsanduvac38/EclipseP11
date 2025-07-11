@@ -1,10 +1,36 @@
 package io;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Reader;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class ProcesaEntrada {
+	
+	public static void main(String[] args) throws  MalformedURLException, IOException {
+		
+//		FileReader fr = new FileReader("/Users/mananas/ContactoDaoMem.java");
+//		System.out.println(leerEntrada(fr));
+		
+//		System.out.println(leerEntrada(System.in));
+		
+		URL url = new URL("https://www.elmundo.es");
+		System.out.println(leerEntrada(url.openStream()));
+		
+		
+		}
+	
+	
+	public static String leerEntrada(InputStream is) {
+		return leerEntrada(new InputStreamReader(is));
+		
+	}
+	
 	
 	
 	public static String leerEntrada(Reader r) {
@@ -22,7 +48,6 @@ public class ProcesaEntrada {
 			//hacer un log
 			throw new RuntimeException();
 		}
-		
 		
 		return sb.toString();
 	}
